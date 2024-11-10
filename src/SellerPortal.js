@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion'; //
+import { motion } from 'framer-motion'; // animation
 import { Menu, X } from 'lucide-react'; // Иконки для мобильного меню
+import logo from './logo.svg';
 
 const brandsData = [
   { id: 1, name: 'Avon', image: '/api/placeholder/200/100' },
@@ -134,7 +135,7 @@ const SellerWebsite = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <img src="/api/placeholder/150/50" alt="Logo" className="h-8 md:h-12" />
+            <img src={logo} alt="Logo" className="h-8 md:h-12" />
             
             {/* Mobile Menu Button */}
             <button
@@ -235,6 +236,7 @@ const SellerWebsite = () => {
       </footer>
     </div>
   );
+
 };
 
 export default SellerWebsite;
