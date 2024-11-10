@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion'; // animation
-import { Menu, X } from 'lucide-react'; // Иконки для мобильного меню
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import logo from './logo.svg';
 
 const brandsData = [
-  { id: 1, name: 'Avon', image: '/api/placeholder/200/100' },
-  { id: 2, name: 'Complement', image: '/api/placeholder/200/100' },
-  { id: 3, name: 'Нежный', image: '/api/placeholder/200/100' },
+  { id: 1, name: 'Avon', image: './images/brands/avon.jpg' },
+  { id: 2, name: 'Complement', image: './images/brands/complement.jpg' },
+  { id: 3, name: 'Нежный', image: './images/brands/nejniy.jpg' },
 ];
 
 const teamData = [
@@ -21,12 +21,12 @@ const warehousesData = [
 
 const deliveryData = {
   title: 'Наша доставка',
-  description: 'Мы осуществляем доставку по всей России',
-  methods: ['Курьерская доставка', 'Почта России', 'Пункты выдачи']
+  description: 'Мы осуществляем доставку по всей Хорезмской области',
+  methods: ['Курьерская доставка', 'Почта BTS', 'Пункты выдачи']
 };
 
 const SellerWebsite = () => {
-  const [activeTab, setActiveTab] = useState('brands');
+  const [activeTab, setActiveTab] = useState('Бренды');
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -58,7 +58,10 @@ const SellerWebsite = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <img src={brand.image} alt={brand.name} className="w-full h-32 md:h-40 object-cover rounded-lg" />
+              <div className="w-full h-[200px] flex items-center justify-center">
+              <img src={brand.image} alt={brand.name} className="max-w-full max-h-full object-contain"  />
+              </div>
+                
                 <h3 className="text-lg md:text-xl font-bold mt-4">{brand.name}</h3>
               </motion.div>
             ))}
@@ -74,7 +77,9 @@ const SellerWebsite = () => {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <img src={member.image} alt={member.name} className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto" />
+                <div className="w-[200px] h-[200px] mx-auto">
+                <img src={member.image} alt={member.name} className="w-full h-full object-cover rounded-full" />
+                </div>
                 <h3 className="text-lg md:text-xl font-bold mt-4">{member.name}</h3>
                 <p className="text-gray-600">{member.position}</p>
               </motion.div>
@@ -91,7 +96,9 @@ const SellerWebsite = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <img src={warehouse.image} alt={warehouse.name} className="w-full h-40 md:h-48 object-cover rounded-lg" />
+                <div className="w-full h-[300px]">
+                  <img src={warehouse.image} alt={warehouse.name} className="w-full h-full object-cover rounded-lg" />
+                </div>
                 <h3 className="text-lg md:text-xl font-bold mt-4">{warehouse.name}</h3>
                 <p className="text-gray-600">{warehouse.address}</p>
               </motion.div>
@@ -190,18 +197,36 @@ const SellerWebsite = () => {
       </header>
 
       {/* Brand Animation Banner */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 py-8 md:py-12">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center text-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-2xl md:text-4xl font-bold mb-2">
-              {brandsData[currentBrandIndex].name}
-            </h2>
-          </motion.div>
+      {/* при необходимости добавить в className bg-gradient-to-r from-blue-500 to-purple-600 */}
+      <div className="h-[400px] md:h-[250px] relative overflow-hidden"> 
+      <div className="absolute inset-0 flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentBrandIndex}
+              className="w-full h-full flex items-center justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.img
+                src={brandsData[currentBrandIndex].image}
+                alt={brandsData[currentBrandIndex].name}
+                className="w-full h-full object-contain px-4"
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              {/* <motion.h2 
+                className="text-xl md:text-2xl font-bold text-white mt-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
+                {brandsData[currentBrandIndex].name}
+              </motion.h2> */}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
@@ -236,7 +261,6 @@ const SellerWebsite = () => {
       </footer>
     </div>
   );
-
 };
 
 export default SellerWebsite;
