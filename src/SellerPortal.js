@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import logo from './logo.svg';
+import AnimatedLogo from './AnimatedLogo';
 
 const brandsData = [
-  { id: 1, name: 'Avon', image: './images/brands/avon.jpg' },
-  { id: 2, name: 'Complement', image: './images/brands/complement.jpg' },
-  { id: 3, name: 'Нежный', image: './images/brands/nejniy.jpg' },
+  { 
+    id: 1, 
+    name: 'Avon', 
+    image: './images/brands/avon.jpg',
+    bannerImage: './images/bannerImage/avonV1.svg'
+  },
+  { 
+    id: 2, 
+    name: 'Compliment', 
+    image: './images/brands/complement.jpg',
+    bannerImage: './images/bannerImage/complimentV1.svg'
+  },
+  { 
+    id: 3, 
+    name: 'Ehrmann', 
+    image: './images/brands/nejniy.jpg',
+    bannerImage: './images/bannerImage/ehrmannV1.svg'
+  },
 ];
 
 const teamData = [
-  { id: 1, name: 'Садиков Дамир', position: 'CEO', image: '/api/placeholder/150/150' },
+  { id: 1, name: 'Садыков Дамир', position: 'CEO', image: '/api/placeholder/150/150' },
   { id: 2, name: 'Садыков Дамир', position: 'Sales Director', image: '/api/placeholder/150/150' },
 ];
 
@@ -58,15 +73,19 @@ const SellerWebsite = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-              <div className="w-full h-[200px] flex items-center justify-center">
-              <img src={brand.image} alt={brand.name} className="max-w-full max-h-full object-contain"  />
-              </div>
-                
+                <div className="w-full h-[200px] flex items-center justify-center">
+                  <img 
+                    src={brand.image} 
+                    alt={brand.name} 
+                    className="max-w-full max-h-full object-contain" 
+                  />
+                </div>
                 <h3 className="text-lg md:text-xl font-bold mt-4">{brand.name}</h3>
               </motion.div>
             ))}
           </div>
         );
+
       case 'Команда':
         return (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
@@ -78,7 +97,11 @@ const SellerWebsite = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="w-[200px] h-[200px] mx-auto">
-                <img src={member.image} alt={member.name} className="w-full h-full object-cover rounded-full" />
+                  <img 
+                    src={member.image} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover rounded-full" 
+                  />
                 </div>
                 <h3 className="text-lg md:text-xl font-bold mt-4">{member.name}</h3>
                 <p className="text-gray-600">{member.position}</p>
@@ -86,6 +109,7 @@ const SellerWebsite = () => {
             ))}
           </div>
         );
+
       case 'Склад':
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -97,7 +121,11 @@ const SellerWebsite = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="w-full h-[300px]">
-                  <img src={warehouse.image} alt={warehouse.name} className="w-full h-full object-cover rounded-lg" />
+                  <img 
+                    src={warehouse.image} 
+                    alt={warehouse.name} 
+                    className="w-full h-full object-cover rounded-lg" 
+                  />
                 </div>
                 <h3 className="text-lg md:text-xl font-bold mt-4">{warehouse.name}</h3>
                 <p className="text-gray-600">{warehouse.address}</p>
@@ -105,6 +133,7 @@ const SellerWebsite = () => {
             ))}
           </div>
         );
+
       case 'Доставка':
         return (
           <motion.div
@@ -130,6 +159,7 @@ const SellerWebsite = () => {
             </ul>
           </motion.div>
         );
+
       default:
         return null;
     }
@@ -139,15 +169,18 @@ const SellerWebsite = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-white shadow-md relative">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 relative">
+          <div className="flex items-center justify-center-between">
             {/* Logo */}
-            <img src={logo} alt="Logo" className="h-8 md:h-12" />
+            <div className="flex items-center justify-between">
+              <AnimatedLogo />
+            </div>
             
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2"
+              className="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors absolute right-4 top-1/2 -translate-y-1/2"
               onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -164,67 +197,77 @@ const SellerWebsite = () => {
                       : 'text-gray-600 hover:bg-gray-100'
                   }`}
                 >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                  {tab}
                 </button>
               ))}
             </nav>
           </div>
 
           {/* Mobile Navigation */}
-          <motion.nav
-            className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: isMobileMenuOpen ? 'auto' : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex flex-col space-y-2 pt-4">
-              {['Бренды', 'Команда', 'Склад', 'Доставка'].map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => handleTabClick(tab)}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    activeTab === tab
-                      ? 'bg-blue-500 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
-                >
-                  {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </button>
-              ))}
-            </div>
-          </motion.nav>
+<AnimatePresence>
+  {isMobileMenuOpen && (
+    <motion.nav
+      className="md:hidden fixed top-0 left-0 right-0 bg-white z-50 border-b shadow-lg"
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: 'auto', opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="p-4">
+        {/* Close button */}
+        <button
+          onClick={toggleMobileMenu}
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100"
+          aria-label="Close menu"
+        >
+          <X size={24} className="text-gray-800" />
+        </button>
+
+        <div className="flex flex-col space-y-2 mt-8">
+          {['Бренды', 'Команда', 'Склад', 'Доставка'].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => handleTabClick(tab)}
+              className={`px-4 py-2 rounded-lg transition-colors ${
+                activeTab === tab
+                  ? 'bg-blue-500 text-white'
+                  : 'text-gray-600 hover:bg-gray-100'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
+    </motion.nav>
+  )}
+</AnimatePresence>
         </div>
       </header>
 
       {/* Brand Animation Banner */}
-      {/* при необходимости добавить в className bg-gradient-to-r from-blue-500 to-purple-600 */}
-      <div className="h-[400px] md:h-[250px] relative overflow-hidden"> 
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="h-[120px] md:h-[500px] relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentBrandIndex}
-              className="w-full h-full flex items-center justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+              className="absolute inset-0 flex items-center justify-center"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '-100%' }}
+              transition={{ 
+                duration: 0.5,
+                ease: "easeInOut"
+              }}
             >
               <motion.img
-                src={brandsData[currentBrandIndex].image}
+                src={brandsData[currentBrandIndex].bannerImage}
                 alt={brandsData[currentBrandIndex].name}
-                className="w-full h-full object-contain px-4"
-                initial={{ scale: 0.8 }}
+                className="w-full h-full flex items-center justify-center"
+                initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.3 }}
               />
-              {/* <motion.h2 
-                className="text-xl md:text-2xl font-bold text-white mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                {brandsData[currentBrandIndex].name}
-              </motion.h2> */}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -251,9 +294,15 @@ const SellerWebsite = () => {
             <div>
               <h3 className="text-lg md:text-xl font-bold mb-4">Социальные сети</h3>
               <div className="flex flex-wrap gap-4">
-                <a href="#" className="text-sm md:text-base hover:text-blue-400">Facebook</a>
-                <a href="#" className="text-sm md:text-base hover:text-blue-400">Instagram</a>
-                <a href="#" className="text-sm md:text-base hover:text-blue-400">Телеграм</a>
+                <a href="#" className="text-sm md:text-base hover:text-blue-400 transition-colors">
+                  Facebook
+                </a>
+                <a href="#" className="text-sm md:text-base hover:text-blue-400 transition-colors">
+                  Instagram
+                </a>
+                <a href="#" className="text-sm md:text-base hover:text-blue-400 transition-colors">
+                  Телеграм
+                </a>
               </div>
             </div>
           </div>
