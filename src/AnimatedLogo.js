@@ -32,7 +32,7 @@ const AnimatedLogo = () => {
       <svg
         ref={logoRef}
         viewBox="0 0 1200 100"
-        className="h-full w-auto"
+        className="h-full w-full max-w-[200px]"
         fill="none"
         stroke="currentColor"
         strokeWidth="2"

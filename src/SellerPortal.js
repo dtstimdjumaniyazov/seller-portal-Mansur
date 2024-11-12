@@ -172,7 +172,7 @@ const SellerWebsite = () => {
         <div className="container mx-auto px-4 py-4 relative">
           <div className="flex items-center justify-center-between">
             {/* Logo */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center">
               <AnimatedLogo />
             </div>
             
@@ -246,32 +246,36 @@ const SellerWebsite = () => {
       </header>
 
       {/* Brand Animation Banner */}
-      <div className="h-[120px] md:h-[500px] relative overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentBrandIndex}
-              className="absolute inset-0 flex items-center justify-center"
-              initial={{ opacity: 0, x: '100%' }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '-100%' }}
-              transition={{ 
-                duration: 0.5,
-                ease: "easeInOut"
-              }}
-            >
-              <motion.img
-                src={brandsData[currentBrandIndex].bannerImage}
-                alt={brandsData[currentBrandIndex].name}
-                className="w-full h-full flex items-center justify-center"
-                initial={{ scale: 0.9 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
+      <div className="h-[120px] md:h-[500px] relative overflow-hidden w-full max-w-full">
+  <div className="absolute inset-0 flex items-center justify-center w-full max-w-full">
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentBrandIndex}
+        className="absolute inset-0 flex items-center justify-center w-full"
+        initial={{ opacity: 0, x: '100%' }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: '-100%' }}
+        transition={{ 
+          duration: 0.5,
+          ease: "easeInOut"
+        }}
+      >
+        <motion.img
+          src={brandsData[currentBrandIndex].bannerImage}
+          alt={brandsData[currentBrandIndex].name}
+          className="w-full h-full object-contain"
+          style={{
+            maxWidth: '100%',
+            objectFit: 'contain'
+          }}
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3 }}
+        />
+      </motion.div>
+    </AnimatePresence>
+  </div>
+</div>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8 md:py-12">
