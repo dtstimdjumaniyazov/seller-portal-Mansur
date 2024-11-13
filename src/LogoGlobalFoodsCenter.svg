@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   viewBox="0 0 599.99997 85.300002"
+   id="svg6"
+   sodipodi:docname="LogoGlobalFoodsCenter.svg"
+   width="600"
+   height="85.300003"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.96568434"
+     inkscape:cx="192.09176"
+     inkscape:cy="16.568561"
+     inkscape:window-width="1440"
+     inkscape:window-height="830"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #e2edf0;
+      }
+
+      .cls-2 {
+        font-family: LatinWide, 'Wide Latin';
+        font-size: 48.55px;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #231f20;
+      }
+
+      .cls-3, .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #00aeef;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.7.1, SVG Export Plug-In . SVG Version: 1.2.0 Build 142)  -->
+  <g
+     id="g6"
+     transform="translate(-103.26,-73.300003)">
+    <g
+       id="Layer_1">
+      <rect
+         class="cls-1"
+         x="105.26"
+         y="73.300003"
+         width="410.09"
+         height="85.300003"
+         id="rect1" />
+      <text
+         class="cls-2"
+         transform="matrix(0.46,0,0,1,115.69,128.58)"
+         id="text6"><tspan
+           class="cls-6"
+           x="0"
+           y="0"
+           id="tspan1">G</tspan><tspan
+           class="cls-3"
+           x="70.860001"
+           y="0"
+           id="tspan2">lobal</tspan><tspan
+           class="cls-5"
+           x="284.64001"
+           y="0"
+           id="tspan3">F</tspan><tspan
+           class="cls-4"
+           x="349.34"
+           y="0"
+           id="tspan4">oods</tspan><tspan
+           class="cls-6"
+           x="553.12"
+           y="0"
+           id="tspan5">C</tspan><tspan
+           class="cls-4"
+           x="615.41998"
+           y="0"
+           id="tspan6">enter</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -25,7 +25,7 @@ const brandsData = [
 ];
 
 const teamData = [
-  { id: 1, name: 'Садыков Дамир', position: 'CEO', image: '/api/placeholder/150/150' },
+  { id: 1, name: 'Садыков Дамир', position: 'CEO', image: './images/avon.jpg' },
   { id: 2, name: 'Садыков Дамир', position: 'Sales Director', image: '/api/placeholder/150/150' },
 ];
 
@@ -60,6 +60,21 @@ const SellerWebsite = () => {
     setActiveTab(tab);
     setIsMobileMenuOpen(false);
   };
+
+  // Общий стиль для активных вкладок
+  const activeTabStyle = `
+    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+  filter: drop-shadow(0 0 8px rgba(33, 147, 176, 0.3));
+  transform: translateY(-1px);
+  `;
+
+  const getTabClassName = (tab) => `
+    px-4 py-2 rounded-lg transition-colors
+    ${activeTab === tab
+      ? 'text-white style-active-tab'
+      : 'text-gray-600 hover:bg-gray-100'
+    }
+  `;
 
   const renderContent = () => {
     switch (activeTab) {
@@ -168,21 +183,27 @@ const SellerWebsite = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-md relative">
-        <div className="container mx-auto px-4 py-4 relative">
-          <div className="flex items-center justify-center-between">
+      <header 
+      className="bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200">
+      {/* Decorative overlay */}
+      <div className="absolute inset-0">
+    <div className="absolute inset-0 bg-white/10"></div>
+    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-200/20"></div>
+  </div>
+  <div className="container mx-auto px-4 py-4 relative">
+    <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center justify-start w-full">
               <AnimatedLogo />
             </div>
             
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors absolute right-4 top-1/2 -translate-y-1/2"
+              className="md:hidden p-2 rounded-lg bg-slate-300 hover:bg-slate-400 transition-colors absolute right-4 top-1/2 -translate-y-1/2"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X size={24} className="text-slate-700"/> : <Menu size={24} className="text-slate-700" />}
             </button>
 
             {/* Desktop Navigation */}
@@ -191,11 +212,11 @@ const SellerWebsite = () => {
                 <button
                   key={tab}
                   onClick={() => handleTabClick(tab)}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    activeTab === tab
-                      ? 'bg-blue-500 text-white'
-                      : 'text-gray-600 hover:bg-gray-100'
-                  }`}
+                  className={`px-4 py-2 rounded-lg transition-all duration-300
+                    ${activeTab === tab 
+                      ? 'style-active-tab transform hover:scale-105' 
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-400/20'
+                    }`}
                 >
                   {tab}
                 </button>
@@ -207,20 +228,20 @@ const SellerWebsite = () => {
 <AnimatePresence>
   {isMobileMenuOpen && (
     <motion.nav
-      className="md:hidden fixed top-0 left-0 right-0 bg-white z-50 border-b shadow-lg"
+      className="md:hidden fixed top-0 left-0 right-0 bg-gradient-to-b from-slate-200 to-slate-300 z-50 border-b border-slate-300 shadow-lg backdrop-blur-sm"
       initial={{ height: 0, opacity: 0 }}
       animate={{ height: 'auto', opacity: 1 }}
       exit={{ height: 0, opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="p-4">
+      <div className="p-6">
         {/* Close button */}
         <button
           onClick={toggleMobileMenu}
-          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-gray-100"
+          className="absolute top-4 right-4 p-2 rounded-lg hover:bg-slate-400/20 transition-all duration-300"
           aria-label="Close menu"
         >
-          <X size={24} className="text-gray-800" />
+          <X size={24} className="text-gray-700" />
         </button>
 
         <div className="flex flex-col space-y-2 mt-8">
@@ -228,11 +249,11 @@ const SellerWebsite = () => {
             <button
               key={tab}
               onClick={() => handleTabClick(tab)}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                activeTab === tab
-                  ? 'bg-blue-500 text-white'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}
+              className={`px-4 py-3 rounded-lg transition-all duration-300 text-left
+                ${activeTab === tab 
+                  ? 'style-active-tab' 
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-400/20'
+                }`}
             >
               {tab}
             </button>
@@ -242,11 +263,21 @@ const SellerWebsite = () => {
     </motion.nav>
   )}
 </AnimatePresence>
+
+        {/* Обновленный стиль для активной вкладки */}
+<style jsx global>{`
+  .style-active-tab {
+    background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+    color: white;
+    filter: drop-shadow(0 0 8px rgba(71, 85, 105, 0.3));
+    transform: translateY(-1px);
+  }
+`}</style>
         </div>
       </header>
 
       {/* Brand Animation Banner */}
-      <div className="h-[120px] md:h-[500px] relative overflow-hidden w-full max-w-full">
+      <div className="h-[120px] md:h-[365px] relative overflow-hidden w-full max-w-full">
   <div className="absolute inset-0 flex items-center justify-center w-full max-w-full">
     <AnimatePresence mode="wait">
       <motion.div
