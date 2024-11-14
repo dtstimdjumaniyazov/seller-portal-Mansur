@@ -61,21 +61,6 @@ const SellerWebsite = () => {
     setIsMobileMenuOpen(false);
   };
 
-  // Общий стиль для активных вкладок
-  const activeTabStyle = `
-    background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
-  filter: drop-shadow(0 0 8px rgba(33, 147, 176, 0.3));
-  transform: translateY(-1px);
-  `;
-
-  const getTabClassName = (tab) => `
-    px-4 py-2 rounded-lg transition-colors
-    ${activeTab === tab
-      ? 'text-white style-active-tab'
-      : 'text-gray-600 hover:bg-gray-100'
-    }
-  `;
-
   const renderContent = () => {
     switch (activeTab) {
       case 'Бренды':
@@ -181,19 +166,17 @@ const SellerWebsite = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-full">
       {/* Header */}
       <header 
-      className="bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200">
+      className="w-full bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200">
       {/* Decorative overlay */}
-      <div className="absolute inset-0">
-    <div className="absolute inset-0 bg-white/10"></div>
-    <div className="absolute inset-0 bg-gradient-to-b from-transparent to-slate-200/20"></div>
+      <div className="w-full px-4 py-4 relative">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
   </div>
-  <div className="container mx-auto px-4 py-4 relative">
-    <div className="flex items-center justify-between">
+  <div className="flex items-center justify-start">
             {/* Logo */}
-            <div className="flex items-center justify-start w-full">
+            <div className="flex items-center justify-start">
               <AnimatedLogo />
             </div>
             
@@ -272,50 +255,76 @@ const SellerWebsite = () => {
     filter: drop-shadow(0 0 8px rgba(71, 85, 105, 0.3));
     transform: translateY(-1px);
   }
+    .banner-height {
+    height: 120px;
+  }
+  
+  @media (min-width: 768px) {
+    .banner-height {
+      height: 332px;
+    }
+  }
+  @media (min-width: 1080px) {
+    .banner-height {
+      height: 365px;
+    }
+  }
+  @media (min-width: 1800px) {
+    .banner-height {
+      height: 485px;
+    }
 `}</style>
         </div>
       </header>
 
       {/* Brand Animation Banner */}
-      <div className="h-[120px] md:h-[365px] relative overflow-hidden w-full max-w-full">
-  <div className="absolute inset-0 flex items-center justify-center w-full max-w-full">
+      
+      
+      <div className="w-full banner-height bg-white">
+  <div className="w-full h-full max-w-[2000px] mx-auto px-0">
     <AnimatePresence mode="wait">
       <motion.div
         key={currentBrandIndex}
-        className="absolute inset-0 flex items-center justify-center w-full"
+        className="w-full h-full flex items-center justify-center"
         initial={{ opacity: 0, x: '100%' }}
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: '-100%' }}
-        transition={{ 
-          duration: 0.5,
-          ease: "easeInOut"
-        }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       >
-        <motion.img
-          src={brandsData[currentBrandIndex].bannerImage}
-          alt={brandsData[currentBrandIndex].name}
-          className="w-full h-full object-contain"
-          style={{
-            maxWidth: '100%',
-            objectFit: 'contain'
-          }}
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.3 }}
-        />
+        <motion.div 
+          className="w-full h-full flex items-center justify-center relative"
+          style={{ maxWidth: '2880px', margin: '0 auto' }}
+        >
+          <motion.img
+            src={brandsData[currentBrandIndex].bannerImage}
+            alt={brandsData[currentBrandIndex].name}
+            className="w-auto h-full object-cover"
+            style={{
+              objectFit: 'contain',
+              minHeight: '100%',
+              width: '100%',
+              margin: '0 auto'
+            }}
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   </div>
 </div>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 md:py-12">
-        {renderContent()}
+      <main className="w-full">
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
+          {renderContent()}
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white mt-12">
-        <div className="container mx-auto px-4 py-8">
+      <footer className="w-full bg-gray-800 text-white mt-12">
+      <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg md:text-xl font-bold mb-4">Контакты</h3>
