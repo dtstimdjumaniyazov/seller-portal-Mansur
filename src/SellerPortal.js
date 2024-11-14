@@ -256,7 +256,7 @@ const SellerWebsite = () => {
     transform: translateY(-1px);
   }
     .banner-height {
-    height: 120px;
+    height: 88px;
   }
   
   @media (min-width: 768px) {
